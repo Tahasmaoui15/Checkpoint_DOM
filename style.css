@@ -59,7 +59,8 @@ body h1 {
 }
 
 .item img:hover {
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3)
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
 }
 
 .item button:nth-child(4) {
@@ -76,6 +77,11 @@ body h1 {
     cursor: pointer;
 }
 
+.item button:nth-child(4):hover,
+.item button:nth-child(6):hover {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3)
+}
+
 .item button:nth-child(8), .like-btn {
     border: thin;
     border-radius: 50%;
@@ -85,8 +91,9 @@ body h1 {
     margin-bottom: 20px;
 }
 
-.item button:nth-child(8), .like-btn:hover {
+.item button:nth-child(8):hover, .like-btn:hover {
     cursor: pointer;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3)
 }
 
 .item button:nth-child(8) {

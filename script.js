@@ -1,3 +1,49 @@
+//Add items to the cart from the JSON file
+
+let ListProductHTML = document.querySelector(".cart");
+let listItems = [];
+
+const addDataToHTML = () => {
+    ListProductHTML.innerHTML = "";
+    if (listItems.length > 0) {
+        listItems.forEach(item => {
+            let newItem = document.createElement("div");
+            newItem.classList.add("item");
+            newItem.setAttribute("data-price",item.price);
+            newItem.innerHTML = `
+                <img src="${item.image}">
+                <h2>${item.name}</h2>
+                <h4>${item.price}$</h4>
+                <button onclick="adjustQuantity(this, -1)"> - </button>
+                <span class="quantity">0</span>
+                <button onclick="adjustQuantity(this, 1)"> + </button> <br>
+                <button onclick="deleteItem(this)">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+                <button class="like-btn" onclick="toggleLike(this)">
+                    <i class="fa-solid fa-heart"></i>
+                </button> <br>
+                <span class="total"> <span class="item-total"> ${item.initial} </span> $ </span>
+            `;
+            ListProductHTML.appendChild(newItem);
+        });
+    }
+};
+
+const initApp = async () => {
+    try {
+        const response = await fetch('items.json');
+        const data = await response.json();
+        listItems = data;
+        addDataToHTML(); // Call addDataToHTML after fetching data
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+};
+
+initApp();
+
+
 //Adjusting product quantity
 function adjustQuantity(button, change) {
     const quantityElement = button.parentElement.querySelector(".quantity");
@@ -48,3 +94,8 @@ function updateTotal() {
         console.error("Cart total element not found.");
     }
 }
+
+
+
+
+

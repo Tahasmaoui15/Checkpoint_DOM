@@ -56,6 +56,8 @@ body h1 {
 
 .item img {
     border-radius: 15%;
+    height: 313px;
+    width: 316px;
 }
 
 .item img:hover {
